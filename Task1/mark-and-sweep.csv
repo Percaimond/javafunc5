@@ -1,5 +1,5 @@
 State at, Object A Marked, Object B Marked, Object C Marked, Object D Marked
 Line 11, true, true, undefined, undefined
-Line 15,,,,
-Line 19,,,,
-Line 23,,,,
+Line 15,true,true,true,true
+Line 19,true,true,true,true
+Line 23,true,false,false,false
