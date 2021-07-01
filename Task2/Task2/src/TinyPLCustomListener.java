@@ -17,7 +17,7 @@ public class TinyPLCustomListener extends ExprPLBaseListener{
             //valuelist.add("false");
             System.out.println("false");
         }
-        else  if(ctx.getChild(0)==ctx.Not()){//only boolean
+        else  if(ctx.getChild(0)==ctx.Not()){//only boolean else instant false
             //valuelist.add("!" + ctx.getChild(1).toString());
             boolean x = Boolean.parseBoolean(ctx.getChild(0).toString());
             boolean y = !x;
@@ -35,6 +35,7 @@ public class TinyPLCustomListener extends ExprPLBaseListener{
         else  if(ctx.getChild(1) == ctx.Equal()) {//either both nat or bool
             //valuelist.add(String.valueOf(ctx.getChild(0).toString().equals(ctx.getChild(1).toString())));
             System.out.println(ctx.getChild(0).toString() + "=" + ctx.getChild(1).toString());
+            //if condition not set, set flag
             //System.out.println("=");
         }
         else if(ctx.getChild(1) == ctx.And()) {//only if both bool
