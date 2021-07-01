@@ -73,16 +73,24 @@ public class TypeChecker extends  ExprPLBaseListener{
 
         return false;
     }
-    public static void main(String[] args){
-        String code = "true + 2";
-        ExprPLParser.ExprContext tree = Util.parseCode(code);
-        TypeChecker checker = new TypeChecker(tree);
-        assertFalse(checker.check());
+    public List<String> run() {
+        List<String> output = new ArrayList<>();
+        valuelist.clear();
         ExprPLBaseListener listener = new ExprPLBaseListener();
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(listener, tree);
-
-
-        System.out.print(valuelist);
+        //System.out.println("values of method: " + lister());
+        output = valuelist;
+        //System.out.println("values of original: " + outputvalues);
+        //System.out.println("values of output: " + output);
+        return output;
+    }
+    public static void main(String[] args){
+        String code = "true && true";
+        ExprPLParser.ExprContext tree = Util.parseCode(code);
+        TypeChecker checker = new TypeChecker(tree);
+        assertFalse(checker.check());
+        List<String> output = checker.run();
+        System.out.println(output);
     }
 }
