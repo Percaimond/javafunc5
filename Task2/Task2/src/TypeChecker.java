@@ -31,7 +31,7 @@ public class TypeChecker extends  ExprPLCustomListener{
     }
 
     public static void main(String[] args){
-        String code = "if 2 = 3 then 27 else true";
+        String code = "if if if true then false else false then false else false then 1 else 4";
         ExprPLParser.ExprContext tree = Util.parseCode(code);
         TypeChecker checker = new TypeChecker(tree);
         System.out.println(checker.check());
