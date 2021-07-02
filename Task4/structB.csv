@@ -1,5 +1,5 @@
 Field offsets and overall size, Packed, Default, Reordered
 field1,0,0,0
-field2,44,44,44
-field3,52,52,52
-size,60,60,60
+field2,40,40,48
+field3,44,48,40
+size,52,56,52

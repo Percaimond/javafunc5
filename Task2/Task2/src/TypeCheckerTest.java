@@ -136,5 +136,18 @@ public class TypeCheckerTest {
         TypeChecker checker = new TypeChecker(tree);
         assertFalse(checker.check());
     }
-
+    @Test
+    public void testExpression18() {
+        String code =  "if if if 2 + 3 = 3 then 24 else 25 then 3 else 5 then 1 else 4";
+        ExprPLParser.ExprContext tree = Util.parseCode(code);
+        TypeChecker checker = new TypeChecker(tree);
+        assertFalse(checker.check());
+    }
+    @Test
+    public void testExpression19() {
+        String code =  "if if 2 + 3 = 3 then 24 else 25 then 3 else 5";
+        ExprPLParser.ExprContext tree = Util.parseCode(code);
+        TypeChecker checker = new TypeChecker(tree);
+        assertFalse(checker.check());
+    }
 }

@@ -9,7 +9,7 @@ public class ParseTreeViewer {
 
     public static void main(String[] args) {
         // write code into string
-        String code = "if 2 = 3 then 27 else true";
+        String code = "if if if 2 + 3 = 3 then 24 else 25 then 3 else 5 then 1 else 4";
 
         // parse code into AST
         Pair<ExprPLParser.ExprContext, ExprPLParser> pair = Util.parseCodeWithParser(code);

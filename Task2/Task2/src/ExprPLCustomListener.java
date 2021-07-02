@@ -166,7 +166,7 @@ public class ExprPLCustomListener extends  ExprPLBaseListener{
             }
         else if (ctx.getChild(0) == ctx.If()) {
 
-            if(isfailed(analyzer.get(ctx.getChild(1).hashCode()))){
+            if(isfailed(analyzer.get(ctx.getChild(1).hashCode())) || isNat((analyzer.get(ctx.getChild(1).hashCode())))){
                 falseexpressionflag = true;
                 typechecker = false;
                 infoType = new String[]{"false", "failed"};
