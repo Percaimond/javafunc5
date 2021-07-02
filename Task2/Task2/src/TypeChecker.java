@@ -22,19 +22,18 @@ public class TypeChecker extends  ExprPLCustomListener{
         ExprPLCustomListener listener = new ExprPLCustomListener();
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(listener, tree);
+
         if(falseexpressionflag){
-            return false;
+            return  false;
         } else {
-        return typechecker;
+            return typechecker;
         }
     }
 
     public static void main(String[] args){
-        String code = "6 + 6 + 3 + 2 + 3 = false";
+        String code = "if 2 = 3 then 27 else true";
         ExprPLParser.ExprContext tree = Util.parseCode(code);
         TypeChecker checker = new TypeChecker(tree);
-        boolean pleasework = checker.check();
-        System.out.println(pleasework);
-        //System.out.println(checker.check());
+        System.out.println(checker.check());
     }
 }

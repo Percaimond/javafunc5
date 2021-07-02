@@ -13,7 +13,7 @@ public class TypeCheckerTest {
     }
 
     @Test
-    public void testExpression2() {
+    public void testExpression2() {//muss safe gehen
         String code = "true";
         ExprPLParser.ExprContext tree = Util.parseCode(code);
         TypeChecker checker = new TypeChecker(tree);
@@ -21,7 +21,7 @@ public class TypeCheckerTest {
     }
 
     @Test
-    public void testExpression3() {
+    public void testExpression3() {//muss safe gehen
         String code = "2 + 4 + 5";
         ExprPLParser.ExprContext tree = Util.parseCode(code);
         TypeChecker checker = new TypeChecker(tree);
@@ -36,7 +36,7 @@ public class TypeCheckerTest {
         assertFalse(checker.check());
     }
     @Test
-    public void testExpression5() {
+    public void testExpression5() {//muss safe gehen
         String code = "if 2 + 3 = 5 then 24 else 25";
         ExprPLParser.ExprContext tree = Util.parseCode(code);
         TypeChecker checker = new TypeChecker(tree);
@@ -56,11 +56,11 @@ public class TypeCheckerTest {
         String code = "!6 = !6";
         ExprPLParser.ExprContext tree = Util.parseCode(code);
         TypeChecker checker = new TypeChecker(tree);
-        assertTrue(checker.check());
+        assertFalse(checker.check());
     }
 
     @Test
-    public void testExpression8() {
+    public void testExpression8() {//muss safe gehen
         String code = "if true = true then false else true";
         ExprPLParser.ExprContext tree = Util.parseCode(code);
         TypeChecker checker = new TypeChecker(tree);
@@ -71,7 +71,7 @@ public class TypeCheckerTest {
         String code = "1 + 2 + 4 + 3 = !10 ";
         ExprPLParser.ExprContext tree = Util.parseCode(code);
         TypeChecker checker = new TypeChecker(tree);
-        assertTrue(checker.check());
+        assertFalse(checker.check());
     }
 
     @Test
@@ -87,12 +87,51 @@ public class TypeCheckerTest {
         String code = "!8 = 9";
         ExprPLParser.ExprContext tree = Util.parseCode(code);
         TypeChecker checker = new TypeChecker(tree);
-        assertTrue(checker.check());
+        assertFalse(checker.check());
     }
 
     @Test
     public void testExpression12() {
         String code = "1 + 2 && false";
+        ExprPLParser.ExprContext tree = Util.parseCode(code);
+        TypeChecker checker = new TypeChecker(tree);
+        assertFalse(checker.check());
+    }
+    @Test
+    public void testExpression13() {
+        String code =  "! true && 1 = 2 = 5 + 3 + 7";
+        ExprPLParser.ExprContext tree = Util.parseCode(code);
+        TypeChecker checker = new TypeChecker(tree);
+        assertFalse(checker.check());
+    }
+
+    @Test
+    public void testExpression14() {//muss safe gehen
+        String code =  "4653";
+        ExprPLParser.ExprContext tree = Util.parseCode(code);
+        TypeChecker checker = new TypeChecker(tree);
+        assertTrue(checker.check());
+    }
+
+    @Test
+    public void testExpression15() {
+        String code =  "!true";
+        ExprPLParser.ExprContext tree = Util.parseCode(code);
+        TypeChecker checker = new TypeChecker(tree);
+        assertTrue(checker.check());
+    }
+
+    @Test
+    public void testExpression16() {
+        String code =  "!5 = !9";
+        ExprPLParser.ExprContext tree = Util.parseCode(code);
+        TypeChecker checker = new TypeChecker(tree);
+        assertFalse(checker.check());
+    }
+
+    @Test
+    public void testExpression17() {
+        String code =  "if 2 + 3 = false then 24 else 25";
         ExprPLParser.ExprContext tree = Util.parseCode(code);
         TypeChecker checker = new TypeChecker(tree);
         assertFalse(checker.check());
